@@ -5,12 +5,18 @@ A decentralized platform for organizing and registering for pickleball tournamen
 ## Features
 
 - Create and manage pickleball tournaments
-- Register for events with USDC payments
+- Register for events with USDC payments (coming soon)
 - DUPR rating integration
 - ENS and Base name resolution
 - Real-time registration updates
 - Event filtering by format, skill level, and price range
 - Dark mode support
+
+## Important Notes
+
+- This is a development version that works locally only
+- Registration data is stored in-memory and will be cleared on server restart
+- Database setup is required for persistent storage
 
 ## Tech Stack
 
@@ -23,7 +29,7 @@ A decentralized platform for organizing and registering for pickleball tournamen
 - Viem
 - DUPR API Integration
 
-## Getting Started
+## Local Development Setup
 
 1. Clone the repository:
 

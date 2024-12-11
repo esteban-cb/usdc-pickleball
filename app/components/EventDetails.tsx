@@ -28,7 +28,8 @@ export default function EventDetails({ event, onBack }: { event: any, onBack: ()
     };
 
     const handleRegistrationUpdate = (e: CustomEvent) => {
-      setRegisteredPlayers(e.detail);
+      setRegisteredPlayers(e.detail.registrations);
+      event.currentParticipants = e.detail.currentParticipants;
     };
 
     window.addEventListener('registrationUpdated', handleRegistrationUpdate as EventListener);

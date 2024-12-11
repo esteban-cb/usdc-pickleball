@@ -1,26 +1,19 @@
 import { NextResponse } from 'next/server';
+import { MOCK_EVENTS } from '../../mock-data';
 
-// Temporary in-memory storage until we set up the database
-let events: any[] = [];
+// Initialize in-memory storage with mock events
+let events = [...MOCK_EVENTS];
 
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    
-    // Generate a simple unique ID
     const newEvent = {
       ...data,
       id: `${Date.now()}`,
-      currentParticipants: 0,
-      createdAt: new Date().toISOString()
+      currentParticipants: 0
     };
-
-    // Store the event (temporarily in memory)
     events.push(newEvent);
-
-    // Log for debugging
-    console.log('Created event:', newEvent);
-
+    
     return NextResponse.json({
       success: true,
       event: newEvent,

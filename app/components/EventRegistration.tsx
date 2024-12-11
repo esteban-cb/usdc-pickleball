@@ -11,6 +11,7 @@ import type { LifecycleStatus } from '@coinbase/onchainkit/checkout';
 interface EventRegistrationProps {
   event: {
     id: string;
+    name: string;
     entryFeeUSDC: number;
     format: 'singles' | 'doubles' | 'mixed';
     minRating: number;
@@ -197,10 +198,14 @@ export default function EventRegistration({ event }: EventRegistrationProps) {
       const registrationsResponse = await fetch(`/api/registrations?eventId=${event.id}`);
       const registrationsData = await registrationsResponse.json();
       if (typeof window !== 'undefined') {
-        const event = new CustomEvent('registrationUpdated', { 
-          detail: registrationsData.registrations 
+        const registrationEvent = new CustomEvent('registrationUpdated', { 
+          detail: {
+            eventId: event.id,
+            registrations: registrationsData.registrations,
+            currentParticipants: registrationsData.registrations.length
+          }
         });
-        window.dispatchEvent(event);
+        window.dispatchEvent(registrationEvent);
       }
     } catch (error) {
       console.error('Registration error:', error);
